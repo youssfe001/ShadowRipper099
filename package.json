@@ -1,0 +1,21 @@
+{
+  "name": "ff-private-server",
+  "version": "1.32.0",
+  "description": "Free Fire v1.32.0 private server emulator — version-check endpoint",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:80": "PORT=80 node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "freefire",
+    "private-server",
+    "game-emulator",
+    "version-check"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
+}

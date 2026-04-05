@@ -1,30 +1,79 @@
-# ShadowRipper099
-**A VM with pre-installed required tools for ripping 3d models etc. on Android/Mac/Windows/Linux**
+# FF Private Server — v1.32.0
 
-# ➡️ Features
-1. Works on every device and every os ✅
-2. No Pc required ❌ 
-3. All tools are pre-installed ☑️
-# ➡️ Requirements 
-1. GitHub Account 🔑
-2. G-mail Account 📧
-3. Any Browser on any device 🌐
-4. Internet 🛜
-5. Chrome Remote Desktop Site [Link](https://remotedesktop.google.com/access/)
-# ➡️ Important Note
-1. Use of main free fire account is not recommended, I'm not responsible if you use it or get banned 🚫 
-1. This repository is for personal use only only don't use it for illegal or inappropriate activities or your account will be banned. ⚠️
-2. This repository is written by Shadow Hacker 99 and managed by The Wizard 99 so you have no right to use this repo for commercial purposes. 👿
-3. Contact with us if you want to upload this repository's video on YT 📮
+Lightweight private server emulator for **Free Fire 1.32.0**.  
+Handles the Unity client's version-check request and returns a spoofed "up-to-date" response to bypass the loading/update screen.
 
-# ➡️ Contact
+---
 
-**Report issue [GitHub issues](https://github.com/gadget1234566/ShadowRipper099/issues)
-Or Contact for help**
+## Endpoints
 
-**Shadow Hacker 99 [YouTube Channel](https://youtube.com/@ShadowHacker099)**
+| Path | Method | Description |
+|------|--------|-------------|
+| `/live/` | GET / POST | Version check — returns the spoof payload |
+| `/live/version.json` | GET / POST | Same — alternate path used by some builds |
+| `/live/config.xml` | GET / POST | Same — alternate path used by some builds |
+| `/` | GET | Health check |
 
+### Response payload
 
-**The Wizard 99 [YouTube Channel](https://youtube.com/@thewizard99)**
+```json
+{
+  "version": "1.32.0",
+  "test_user": false,
+  "update_url": "",
+  "force_update": false,
+  "status": 0,
+  "patch_url": "",
+  "maintenance": false
+}
+```
 
-# ❤️ Subscribe ❤️ 
+---
+
+## Quick Start
+
+### Node.js (zero dependencies)
+
+```bash
+# port 8080
+npm start
+
+# port 80  (requires root / sudo on Linux)
+npm run start:80
+
+# auto-restart on file changes (Node ≥ 18)
+npm run dev
+```
+
+### PHP built-in server
+
+```bash
+php -S 0.0.0.0:8080 router.php
+```
+
+### PHP + Apache
+
+Add to `.htaccess` in your web root:
+
+```apache
+RewriteEngine On
+RewriteRule ^live(/.*)?$ index.php [L,QSA]
+```
+
+---
+
+## Logging
+
+Every request is printed to stdout with timestamp, method, client IP, and path.  
+The PHP handler also appends to `ff_requests.log` in the project directory.
+
+```
+[2026-04-05T17:43:05.136Z]  [GET ]  [192.168.1.5]  /live/  →  version-check → 1.32.0
+```
+
+---
+
+## Requirements
+
+- **Node.js** ≥ 14  OR  **PHP** ≥ 7.4
+- No third-party packages required

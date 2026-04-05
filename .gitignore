@@ -1,0 +1,20 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# PHP logs
+ff_requests.log
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
