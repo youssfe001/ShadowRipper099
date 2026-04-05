@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "ff-private-server",
+  "rewrites": [
+    { "source": "/live/:path*", "destination": "/api/live" },
+    { "source": "/",            "destination": "/api/index" }
+  ]
+}
